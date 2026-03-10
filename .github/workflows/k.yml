@@ -16,7 +16,7 @@ jobs:
       - name: disable man-db
         run: sudo rm -f /var/lib/man-db/auto-update
       - name: install dependencies
-        run: sudo apt-get update && sudo apt-get install -y mpv ffmpeg yt-dlp
+        run: sudo apt-get update && sudo apt-get install -y mpv ffmpeg yt-dlp wget
 
       - name: mpv
         id: record
@@ -27,7 +27,7 @@ jobs:
       - name: ts to mp4
         if: always()
         run: |
-            cd test
+            wget 'https://github.com/FakeAdsCollection/test/raw/refs/heads/main/s.txt'
             ffmpeg -protocol_whitelist file,http,https,tcp,tls,crypto -f concat -safe 0 -i s.txt -c copy artifact/out/recorded.ts
             ffmpeg -i artifact/out/recorded.ts -vcodec copy -acodec copy artifact/out/recorded.mp4
             rm -rf artifact/out/recorded.ts 
