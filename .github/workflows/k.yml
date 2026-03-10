@@ -1,0 +1,59 @@
+name: Record a test2
+
+on:
+  workflow_dispatch: 
+
+jobs:
+  record-stream:
+    runs-on: ubuntu-latest
+
+    env:
+      tag_name: recording-${{ github.run_id }}
+
+    steps:
+      - name: disable initramfs
+        run: sudo sed -i 's/yes/no/g' /etc/initramfs-tools/update-initramfs.conf
+      - name: disable man-db
+        run: sudo rm -f /var/lib/man-db/auto-update
+      - name: install dependencies
+        run: sudo apt-get update && sudo apt-get install -y mpv ffmpeg yt-dlp
+
+      - name: mpv
+        id: record
+        continue-on-error: true
+        run: |
+          mkdir -p artifact/out
+
+      - name: ts to mp4
+        if: always()
+        run: |
+            ffmpeg -protocol_whitelist file,http,https,tcp,tls,crypto -f concat -safe 0 -i s.txt -c copy artifact/out/recorded.ts
+            ffmpeg -i artifact/out/recorded.ts -vcodec copy -acodec copy artifact/out/recorded.mp4
+            rm -rf artifact/out/recorded.ts 
+
+      - name: create release
+        if: always()
+        run: |
+          gh release create "$tag_name" --repo "${{ github.repository }}" \
+            --title "🌈🌈🌈 - $tag_name" \
+            --notes "🌈🌈🌈" \
+            --draft
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: upload artifacts to the release
+        if: always()
+        run: |
+          repo=${{ github.repository }}
+          tag_name=${{ env.tag_name }}
+          for artifact_dir in ./artifact/*; do
+            for artifact in "$artifact_dir"/*; do
+              gh release upload "$tag_name" "$artifact" --repo "$repo" --clobber
+            done
+          done
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Cleanup (optional)
+        if: always()
+        run: rm -rf artifact
