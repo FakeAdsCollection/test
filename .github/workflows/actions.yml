@@ -24,7 +24,7 @@ jobs:
         run: |
           mkdir -p artifact/out
           # mpv --vo=null --ao=null "https://video.detik.com/trans7/smil:trans7.smil/chunklist_w577694934_b744100_sleng.m3u8" --stream-record=artifact/out/recorded.ts
-          mpv --vo=null --ao=null "https://live.eu-north-1a.cf.dmcdn.net/sec2(N4HFHBvKm7GAr2ARdcGHhm6C78581omaBJbimlLsHt8Nw_ptkciCbE15iSSku5NEj23CDvlDIiVlgrk6nioRbnHJd1v_dPcD28g-HoYFJc19573qqbTPLyhLyFHqrVnm)/dm/3/x8qckyq/d/live-720.m3u8" --stream-record=artifact/out/recorded.ts
+          mpv --vo=null --ao=null "https://live.eu-north-1a.cf.dmcdn.net/sec2(dXrB8YxufjGOeariteIZdJ-Jn9nfC8UBwgrS7vtod2d7nfW8zfKfgBytBJlNrbZ48lpuu2QC7ghH2BRoJCG6Rzbvbew_4GGPGODjB8sozNu_SN58-9HtWrNsB3MiP7ky)/dm/3/x8qckyq/d/live-720.m3u8" --stream-record=artifact/out/recorded.ts
 
       - name: ts to mp4
         if: always()
