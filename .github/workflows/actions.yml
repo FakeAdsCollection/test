@@ -15,6 +15,10 @@ jobs:
         run: sudo sed -i 's/yes/no/g' /etc/initramfs-tools/update-initramfs.conf
       - name: disable man-db
         run: sudo rm -f /var/lib/man-db/auto-update
+      - name: Configure fast APT mirror
+        uses: vegardit/fast-apt-mirror.sh@v1
+        with: 
+              exclude-current: true
       - name: install dependencies
         run: sudo apt-get update && sudo apt-get install -y mpv ffmpeg yt-dlp
 
