@@ -27,7 +27,7 @@ jobs:
         continue-on-error: true
         run: |
           mkdir -p artifact/out
-          mpv --vo=null --ao=null "http://iptv.kilas7.com/live/kaukia/asdfrewq/4.m3u8" --stream-record=artifact/out/recorded.ts
+          mpv --vo=null --ao=null "http://202.169.224.202:8800/udp/239.4.1.2:1234" --stream-record=artifact/out/recorded.ts
           # mpv --vo=null --ao=null "https://live.eu-north-1b.cf.dmcdn.net/sec2(SPAM50G8_vK5G-DtubVD_RxSAUWVPJ7RcpxgdbZ1Iu6BPoFvlPQ07f5fX4iHBZlCxZ59q1kuSBVSJyV65bMmLvIHYJepcdyGFvqIoHBZ2O2rvvYzQ1Q92weLbFh7JQuV)/dm/3/x8qckyq/d/live-720.m3u8" --stream-record=artifact/out/recorded.ts
 
       - name: ts to mp4
