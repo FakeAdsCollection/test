@@ -34,7 +34,7 @@ jobs:
         if: always()
         run: |
           if [ -f artifact/out/recorded.ts ]; then
-            ffmpeg -i artifact/out/recorded.ts -vcodec copy -acodec copy artifact/out/recorded.mp4
+            ffmpeg -i artifact/out/recorded.ts -vcodec copy -acodec aac  artifact/out/recorded.mp4
             rm -rf artifact/out/recorded.ts 
           else
             echo "recorded.ts not found"
