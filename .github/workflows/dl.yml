@@ -31,7 +31,7 @@ jobs:
         if: always()
         run: |
             cd artifact/out/
-            aria2c 'https://upaste.de/raw/HdN'
+            aria2c 'https://upaste.de/raw/neb'
             aria2c -i HdN
 
       - name: create release
