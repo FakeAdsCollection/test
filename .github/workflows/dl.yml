@@ -31,8 +31,8 @@ jobs:
         if: always()
         run: |
             cd artifact/out/
-            aria2c 'https://upaste.de/raw/Btg'
-            aria2c -i Btg
+            aria2c 'https://upaste.de/raw/ivm'
+            aria2c -i ivm
 
       - name: create release
         run: |
