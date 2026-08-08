@@ -5,7 +5,7 @@ on:
 
 jobs:
   record-stream:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-slim
 
     env:
       tag_name: recording-${{ github.run_id }}
@@ -31,8 +31,8 @@ jobs:
         if: always()
         run: |
             cd artifact/out/
-            aria2c 'https://upaste.de/raw/3Za'
-            aria2c -i 3Za
+            aria2c 'https://upaste.de/raw/zB8'
+            aria2c -i zB8
 
       - name: create release
         run: |
