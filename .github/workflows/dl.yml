@@ -18,7 +18,7 @@ jobs:
         with: 
               exclude-current: true
       - name: install dependencies
-        run: sudo apt-get update && sudo apt-get install -y mpv ffmpeg yt-dlp wget aria2
+        run: sudo apt-get update && sudo apt-get install -y --no-install-recommends wget aria2 curl
 
       - name: mpv
         id: record
