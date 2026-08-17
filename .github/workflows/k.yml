@@ -30,9 +30,7 @@ jobs:
       - name: ts to mp4
         if: always()
         run: |
-            # wget 'https://github.com/FakeAdsCollection/test/raw/refs/heads/main/s.txt'
-            wget 'https://upaste.de/raw/VnG'
-            mv VnG s.txt
+            wget 'https://github.com/FakeAdsCollection/test/raw/refs/heads/main/s.txt'
             ffmpeg -protocol_whitelist file,http,https,tcp,tls,crypto -f concat -safe 0 -i s.txt -c copy artifact/out/recorded.ts
             ffmpeg -i artifact/out/recorded.ts -vcodec copy -acodec copy artifact/out/recorded.mp4
             rm -rf artifact/out/recorded.ts 
