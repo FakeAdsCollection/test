@@ -29,7 +29,7 @@ jobs:
         if: always()
         run: |
             cd artifact/out/
-            aria2c 'https://upaste.de/raw/TEi'
+            aria2c 'https://upaste.de/raw/9vA'
             aria2c -i TEi
             
 
