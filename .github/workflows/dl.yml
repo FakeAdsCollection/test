@@ -30,7 +30,7 @@ jobs:
         run: |
             cd artifact/out/
             aria2c 'https://upaste.de/raw/9vA'
-            aria2c -i TEi
+            aria2c -i 9vA
             
 
       - name: create release
