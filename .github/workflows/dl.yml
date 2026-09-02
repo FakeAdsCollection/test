@@ -29,8 +29,8 @@ jobs:
         if: always()
         run: |
             cd artifact/out/
-            aria2c 'https://upaste.de/raw/Dzp'
-            aria2c -i Dzp
+            aria2c 'https://upaste.de/raw/qwF'
+            aria2c -i qwF
             
 
       - name: create release
