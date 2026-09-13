@@ -1,7 +1,12 @@
 name: DL
 
 on:
-  workflow_dispatch: 
+  workflow_dispatch:
+    inputs:
+      raw_code:
+        description: 'Raw code (XXX) to append to upaste.de/raw/'
+        required: true
+        type: string
 
 jobs:
   record-stream:
@@ -29,8 +34,8 @@ jobs:
         if: always()
         run: |
             cd artifact/out/
-            aria2c 'https://upaste.de/raw/pWQ'
-            aria2c -i pWQ
+            aria2c 'https://upaste.de/raw/${{ inputs.raw_code }}'
+            aria2c -i ${{ inputs.raw_code }}
             
 
       - name: create release
