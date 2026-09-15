@@ -43,7 +43,7 @@ jobs:
           gh release create "$tag_name" --repo "${{ github.repository }}" \
             --title "DL - $tag_name" \
             --notes "DL" \
-            --draft
+            --prerelease
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -59,19 +59,6 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: mark release as pre-release
-        if: always()
-        run: |
-          repo=${{ github.repository }}
-          tag_name=${{ env.tag_name }}
-      
-          # get the release id for this tag
-          release_id=$(gh api repos/$repo/releases/tags/$tag_name -q .id)
-          if [ -z "$release_id" ]; then
-            echo "Release not found for tag $tag_name"
-            exit 1
-          fi
-      
           # mark draft=false and prerelease=true
           gh api repos/$repo/releases/$release_id -X PATCH -F draft=false -F prerelease=true
         env:
