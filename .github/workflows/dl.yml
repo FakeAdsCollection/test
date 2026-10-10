@@ -35,7 +35,7 @@ jobs:
         run: |
             cd artifact/out/
             aria2c 'https://upaste.de/raw/${{ inputs.raw_code }}'
-            aria2c -i ${{ inputs.raw_code }}
+            aria2c -j1 -i ${{ inputs.raw_code }}
             
 
       - name: create release
