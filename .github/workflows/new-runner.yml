@@ -27,15 +27,15 @@ jobs:
         continue-on-error: true
         run: |
           mkdir -p artifact/out
-          mpv --vo=null --ao=null "http://202.169.224.202:8800/udp/239.4.1.2:1234" --stream-record=artifact/out/recorded.ts
+          ffmpeg -protocol_whitelist file,http,https,tcp,tls,crypto -i "https://live.eu-north-1a.cf.dmcdn.net/sec2(1pvc7EwMwiBexyy85NzMIY4qNxWOCXP-WKCC51zlUWCWua4p9oVwnQ9DGrE-bScFvw_sf0i7F9iwyHj6fZEQSQYwtBd3qFbIyzeculTe5hFWwnfnGiMyxlRgY2XYqrsrZidv7Vi7mFDq3AVxl1qWqNWEmMGl60NQgOuT1KspFFzxo4X2TCHlwVM3NkLmJoA5)/dm/3/x8qckyq/d/live-h264-720.m3u8" -i "https://live.eu-north-1a.cf.dmcdn.net/sec2(1pvc7EwMwiBexyy85NzMIY4qNxWOCXP-WKCC51zlUWCWua4p9oVwnQ9DGrE-bScFvw_sf0i7F9iwyHj6fZEQSQYwtBd3qFbIyzeculTe5hFWwnfnGiMyxlRgY2XYqrsrZidv7Vi7mFDq3AVxl1qWqNWEmMGl60NQgOuT1KspFFzxo4X2TCHlwVM3NkLmJoA5)/dm/3/x8qckyq/d/live-aac-128.m3u8" -c copy  recorded.mkv
           # mpv --vo=null --ao=null "https://live.eu-north-1b.cf.dmcdn.net/sec2(SPAM50G8_vK5G-DtubVD_RxSAUWVPJ7RcpxgdbZ1Iu6BPoFvlPQ07f5fX4iHBZlCxZ59q1kuSBVSJyV65bMmLvIHYJepcdyGFvqIoHBZ2O2rvvYzQ1Q92weLbFh7JQuV)/dm/3/x8qckyq/d/live-720.m3u8" --stream-record=artifact/out/recorded.ts
 
       - name: ts to mp4
         if: always()
         run: |
           if [ -f artifact/out/recorded.ts ]; then
-            ffmpeg -i artifact/out/recorded.ts -vcodec copy -acodec aac  artifact/out/recorded.mp4
-            rm -rf artifact/out/recorded.ts 
+            ffmpeg -i artifact/out/recorded.mkv -vcodec copy -acodec copy  artifact/out/recorded.mp4
+            rm -rf artifact/out/recorded.mkv
           else
             echo "recorded.ts not found"
           fi
