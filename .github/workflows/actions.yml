@@ -11,8 +11,6 @@ jobs:
       tag_name: recording-${{ github.run_id }}
 
     steps:
-      - name: disable initramfs
-        run: sudo sed -i 's/yes/no/g' /etc/initramfs-tools/update-initramfs.conf
       - name: disable man-db
         run: sudo rm -f /var/lib/man-db/auto-update
       - name: Configure fast APT mirror
