@@ -1,0 +1,3 @@
+# Netscape HTTP Cookie File
+video.detik.com	FALSE	/	TRUE	0	dtklucx	gen_2411f53e-1898-5106-5b48-7b642878fb48
+video.detik.com	FALSE	/	TRUE	0	cshx	3bcdb206
