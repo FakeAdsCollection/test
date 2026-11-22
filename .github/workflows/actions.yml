@@ -2,8 +2,6 @@ name: Record a test
 
 on:
   workflow_dispatch: 
-  schedule:
-    - cron: '58 12 * * *'
     
 jobs:
   record-stream:
